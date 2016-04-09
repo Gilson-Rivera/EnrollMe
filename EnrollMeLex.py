@@ -52,3 +52,15 @@ def t_error(t):
 
 # Build the lexer
 lexer = lex.lex()
+
+# Test
+s = "enroll icom4036 030"
+print('lexer:'+ str(lexer))
+print('input: ' + s)
+print('tokens: ')
+lexer.input(s)
+for tok in lexer:
+    print(tok)
+
+if __name__ == "__main__":
+    import sys
