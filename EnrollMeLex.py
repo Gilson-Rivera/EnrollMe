@@ -3,6 +3,15 @@
 # ------------------------------------------------------------
 import ply.lex as lex
 
+# Reserved words
+reserved = {
+   'enroll' : 'ENROLL',
+   'drop' : 'DROP',
+   'change' : 'CHANGE',
+   'available' : 'AVAILABLE',
+   'schedule' : 'SCHEDULE'
+}
+
 # List of token names. This is always required
 tokens = (
    'NUMBER',
