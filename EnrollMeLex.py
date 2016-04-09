@@ -15,12 +15,19 @@ reserved = {
 # List of token names. This is always required
 tokens = [
     'COURSE',
-    'SECTION'
-]
+    'SECTION',
+    'ID'
+] + list(reserved.values())
 
 # Regular expression rules for simple tokens
 t_COURSE = r'[a-zA-z]{4}[0-9]{4}'
 t_SECTION = r'[0-9]{3}'
+
+# Define a rule for reserved words
+def t_ID(t):
+    r'\b[a-z]+\b'
+    t.type = reserved.get(t.value,'ID')    # Check for reserved words
+    return t
 
 # Define a rule so we can track line numbers
 def t_newline(t):
