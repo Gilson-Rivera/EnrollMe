@@ -16,16 +16,22 @@ reserved = {
 tokens = [
     'COURSE',
     'SECTION',
+    'TIME',
+    'PROFESSOR',
     'ID'
 ] + list(reserved.values())
 
 # Regular expression rules for simple tokens
 t_COURSE = r'[a-zA-z]{4}[0-9]{4}'
 t_SECTION = r'[0-9]{3}'
+t_TIME = r'\bmorning\b|\bafternoon\b'
+t_PROFESSOR = r'\b[a-zA-Z]+[+][a-zA-Z]+\b'
+
+
 
 # Define a rule for reserved words
 def t_ID(t):
-    r'\b[a-z]+\b'
+    r'\b^[a-z]+\b'
     t.type = reserved.get(t.value,'ID')    # Check for reserved words
     return t
 
@@ -35,7 +41,7 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 # A string containing ignored characters (spaces and tabs)
-t_ignore  = ' \t'
+t_ignore = ' \t'
 
 # Error handling rule
 def t_error(t):
@@ -46,7 +52,8 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test
-s = "enroll icom4036 030"
+s = "enroll ICOM4055"
+
 print('lexer:'+ str(lexer))
 print('input: ' + s)
 print('tokens: ')
