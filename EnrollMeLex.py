@@ -52,8 +52,9 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test
-s = "enroll ICOM4055"
-
+s = "enroll ICOM4055 080" \
+    "drop ICOM4055 080" \
+    "change ICOM4055 030"
 print('lexer:'+ str(lexer))
 print('input: ' + s)
 print('tokens: ')
