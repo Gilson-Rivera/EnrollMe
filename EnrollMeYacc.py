@@ -70,3 +70,14 @@ def p_statement_schedule(p):
 def p_error(p):
     print("Syntax error in input!")
 
+# Build the parser
+parser = yacc.yacc()
+
+while True:
+    try:
+        s = raw_input('EnrollMe > ')
+    except EOFError:
+        break
+    if s == 'quit': break
+    if not s: continue
+    result = parser.parse(s)
