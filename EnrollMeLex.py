@@ -31,7 +31,7 @@ t_PROFESSOR = r'\b[a-zA-Z]+[+][a-zA-Z]+\b'
 
 # Define a rule for reserved words
 def t_ID(t):
-    r'\b^[a-z]+\b'
+    r'\b[a-z]+\b'
     t.type = reserved.get(t.value,'ID')    # Check for reserved words
     return t
 
