@@ -51,16 +51,20 @@ def t_error(t):
 # Build the lexer
 lexer = lex.lex()
 
-# Test
-s = "enroll ICOM4055 080\n" \
-    "drop ICOM4055 080\n" \
-    "change ICOM4055 030"
-print('lexer:'+ str(lexer))
-print('input: ' + s)
-print('tokens: ')
-lexer.input(s)
-for tok in lexer:
-    print(tok)
+# Testsing is now done in EnrollMeTester
+#--------------------------------------------------
+
+# s = "enroll ICOM4055 080\n" \
+#     "drop ICOM4055 080\n" \
+#     "change ICOM4055 030"
+# print('lexer:'+ str(lexer))
+# print('input: ' + s)
+# print('tokens: ')
+# lexer.input(s)
+# for tok in lexer:
+#     print(tok)
+
+#---------------------------------------------------
 
 if __name__ == "__main__":
     import sys
