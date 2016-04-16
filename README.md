@@ -9,37 +9,37 @@ easy to learn framework where rookies and first-timers can simply *enroll*,
 
 ### Installation
 Download, clone or fork repo to desired directory. Open Terminal or Powershell, navigate to desired directory and run:
-'''
+```
 python EnrollMeYacc
-'''
+```
 
 ### Usage
 ######Students can:
 
 *enroll*:
-'''
+```
 enroll [course] [section]
-'''
+```
 
 *drop*:
-'''
+```
 drop [course]
-'''
+```
 
 *change*:
-'''
+```
 change [course] [section]
-'''
+```
 
 *availabe*:
-'''
+```
 available [course] [professor] [time]
-'''
+```
 
 *schedule*:
-'''
+```
 schedule
-'''
+```
 
 ### Team
 * Diego Figueroa - Lead Designer
