@@ -1,6 +1,8 @@
 # EnrollMe
 ##### A Programming Language for UPRM's Enrolling System
 
+---
+
 ### About
 **EnrollMe** is a scripting language designed to help ease the process of
 enrollment for UPRM's students. It achieves this by providing a simple and
@@ -10,11 +12,11 @@ easy to learn framework where rookies and first-timers can simply *enroll*,
 ### Installation
 Download, clone or fork repo to desired directory. Open Terminal or Powershell, navigate to desired directory and run:
 ```
-python EnrollMeYacc
+python EnrollMeYacc.py
 ```
 
 ### Usage
-######Students can:
+Students can...
 
 *enroll*:
 ```
@@ -31,7 +33,7 @@ drop [course]
 change [course] [section]
 ```
 
-*availabe*:
+*available*:
 ```
 available [course] [professor] [time]
 ```
