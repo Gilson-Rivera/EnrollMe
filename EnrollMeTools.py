@@ -32,7 +32,7 @@ def drop(course):
         message = r.json()
         message = message['message']
         return message
-    else:
+    if(r.status_code == 204):
         return 'Successfully dropped of ' + course.upper()
 
 def change(course, section):
