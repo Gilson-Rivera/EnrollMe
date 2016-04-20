@@ -13,7 +13,7 @@ with open('credentials.txt') as f:
             if (l[1]):
                 credentials = l[1]
             else:
-                print('credentials not set')
+                print 'credentials not set'
 
 def enroll(course, section):
     payload = {'studentID': credentials,'courseID': course, 'section': section}
@@ -58,5 +58,4 @@ def change(course, section):
 # Requisites:
 #   Query for all courses in schedule, and
 #   draw a table accordingly.
-def schedule():
-    pass
+# def schedule():
