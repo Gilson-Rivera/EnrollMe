@@ -2,25 +2,44 @@
 # EnrollMeTools.py
 # ------------------------------------------------------------
 
-# enroll(course, section)
-# Pre-Requisites:
-#    * User must be logged in
-#    * course must be valid
-#    * section must be valid
-def enroll(course, section):
+# Import Requests module
+import requests
 
-# drop(course)
-# Pre-Requisites:
-#    * User must be logged in
-#    * course must be valid
+credentials = ''
+with open('credentials.txt') as f:
+    for line in f:
+        if 'studentID' in line:
+            l = line.split('=')
+            if (l[1]):
+                credentials = l[1]
+            else:
+                print 'credentials not set'
+
+def enroll(course, section):
+    payload = {'studentID': credentials,'courseID': course, 'section': section}
+    r = requests.post('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
+    if(r.status_code == 404):
+        message = r.json()
+        message = message['message']
+        return message
+    if(r.status_code == 201):
+        return 'Successfully enrolled in ' + course.upper() + ' ' + section
+
 def drop(course):
 
-# change(course, section)
-# Pre-Requisites:
-#    * User must be logged in
-#    * course must be valid
-#    * section must be valid
 def change(course, section):
+    payload = {'studentID': credentials, 'courseName': course}
+    r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
+    userCourse = r.text
+
+    payload = {'section': section}
+    r = requests.put('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses/' + userCourse, params=payload)
+    if(r.status_code == 404):
+        message = r.json()
+        message = message['message']
+        return message
+    if(r.status_code == 200):
+        return 'Successfully changed to ' + course.upper() + ' ' + section
 
 # available(course, professor, time)
 # Pre-Requisites:
