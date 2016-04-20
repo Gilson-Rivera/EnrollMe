@@ -10,37 +10,35 @@ easy to learn framework where rookies and first-timers can simply *enroll*,
 *drop*, *change* courses in their *schedule*.
 
 ### Installation
-Download, clone or fork repo to desired directory. Open Terminal or Powershell, navigate to desired directory and run:
-```
-python EnrollMeYacc.py
-```
+###### Dependencies
+* Python 2.7 or higher
+* [Requests: HTTP for Humans](http://docs.python-requests.org/en/master/user/install/)
+
+Make sure dependencies are installed; download, clone or fork repo to desired directory.
 
 ### Usage
-Students can...
+Please supply student ID for login purposes using the credentials.txt file, like this:
+```
+studentID=802124321
+```
 
-*enroll*:
+Open Terminal or Powershell, navigate to desired directory and run:
+```
+python EnrollMe.py
+```
+
+After entering the EnrollMe shell environment, students can **enroll**, **drop** and **change** courses. They can also see **available** courses and their current **schedule**.
 ```
 enroll [course] [section]
-```
-
-*drop*:
-```
 drop [course]
-```
-
-*change*:
-```
 change [course] [section]
-```
-
-*available*:
-```
 available [course] [professor] [time]
+schedule
 ```
 
-*schedule*:
+After session is finished, users can *quit* to close EnrollMe shell.
 ```
-schedule
+quit
 ```
 
 ### Team
