@@ -22,18 +22,12 @@ def p_statement(p):
 def p_statement_enroll(p):
     'statement_enroll : ENROLL COURSE SECTION'
     p[0] = p[1] + p[2] + p[3]
-    # Substitute for real implementation, which should call
-    # methods defined in imported module.
-    print("parsed 'statement_enroll'")
-    print("identifier: " + p[1])
-    print("tokens: " + p[2] + " " + p[3])
     res = EnrollMeTools.enroll(p[2], p[3])
     print res
 
 def p_statement_drop(p):
     'statement_drop : DROP COURSE'
     p[0] = p[1] + p[2]
-    # Same
     print("parsed 'statement_drop'")
     print("identifier: " + p[1])
     print("tokens: " + p[2])
@@ -43,10 +37,6 @@ def p_statement_drop(p):
 def p_statement_change(p):
     'statement_change : CHANGE COURSE SECTION'
     p[0] = p[1] + p[2] + p[3]
-    # Same
-    print("parsed 'statement_change'")
-    print("identifier: " + p[1])
-    print("tokens: " + p[2] + " " + p[3])
     res = EnrollMeTools.change(p[2], p[3])
     print res
 
