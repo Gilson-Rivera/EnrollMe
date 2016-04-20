@@ -23,7 +23,7 @@ def p_statement_enroll(p):
     'statement_enroll : ENROLL COURSE SECTION'
     p[0] = p[1] + p[2] + p[3]
     res = EnrollMeTools.enroll(p[2], p[3])
-    print res
+    print(res)
 
 def p_statement_drop(p):
     'statement_drop : DROP COURSE'
@@ -32,13 +32,13 @@ def p_statement_drop(p):
     print("identifier: " + p[1])
     print("tokens: " + p[2])
     res = EnrollMeTools.drop(p[2])
-    print res
+    print(res)
 
 def p_statement_change(p):
     'statement_change : CHANGE COURSE SECTION'
     p[0] = p[1] + p[2] + p[3]
     res = EnrollMeTools.change(p[2], p[3])
-    print res
+    print(res)
 
 # Requisites:
 #   When invoking available(), make sure to pass down arguments
@@ -64,6 +64,7 @@ def p_statement_available(p):
 def p_statement_schedule(p):
     'statement_schedule : SCHEDULE'
     p[0] = p[1]
+    EnrollMeTools.schedule()
 
 # Error rule for syntax errors
 def p_error(p):
