@@ -7,7 +7,7 @@ import ply.yacc as yacc
 from EnrollMeLex import tokens
 
 # Import intermediate code module here
-
+import EnrollMeTools
 
 # Primary reduce statement
 def p_statement(p):
@@ -16,7 +16,6 @@ def p_statement(p):
                  | statement_change
                  | statement_available
                  | statement_schedule'''
-    print("parsed 'statement'")
     pass
 
 
@@ -28,6 +27,8 @@ def p_statement_enroll(p):
     print("parsed 'statement_enroll'")
     print("identifier: " + p[1])
     print("tokens: " + p[2] + " " + p[3])
+    res = EnrollMeTools.enroll(p[2], p[3])
+    print res
 
 def p_statement_drop(p):
     'statement_drop : DROP COURSE'
@@ -36,6 +37,8 @@ def p_statement_drop(p):
     print("parsed 'statement_drop'")
     print("identifier: " + p[1])
     print("tokens: " + p[2])
+    res = EnrollMeTools.drop(p[2])
+    print res
 
 def p_statement_change(p):
     'statement_change : CHANGE COURSE SECTION'
@@ -44,7 +47,12 @@ def p_statement_change(p):
     print("parsed 'statement_change'")
     print("identifier: " + p[1])
     print("tokens: " + p[2] + " " + p[3])
+    res = EnrollMeTools.change(p[2], p[3])
+    print res
 
+# Requisites:
+#   When invoking available(), make sure to pass down arguments
+#   in the correct order of course, professor, time.
 def p_statement_available(p):
     '''statement_available : AVAILABLE COURSE PROFESSOR TIME
                          | AVAILABLE COURSE PROFESSOR
@@ -54,17 +62,18 @@ def p_statement_available(p):
                          | AVAILABLE PROFESSOR
                          | AVAILABLE TIME
                          | AVAILABLE'''
-    # Same
     print("parsed 'statement_available'")
     print("identifier: " + p[1])
     print("tokens: ")
     for part in p[2:]:
         print(part)
 
+# Requisites:
+#   When invoking schedule(), table drawing of schedule
+#   should be done in EnrollMeTools module.
 def p_statement_schedule(p):
     'statement_schedule : SCHEDULE'
     p[0] = p[1]
-    # Same
 
 # Error rule for syntax errors
 def p_error(p):
