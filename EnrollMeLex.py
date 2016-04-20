@@ -22,7 +22,7 @@ tokens = [
 ] + list(reserved.values())
 
 # Regular expression rules for simple tokens
-t_COURSE = r'[a-zA-z]{4}[0-9]{4}'
+t_COURSE = r'[a-zA-Z]{4}[0-9]{4}'
 t_SECTION = r'[0-9]{3}'
 t_TIME = r'\bmorning\b|\bafternoon\b'
 t_PROFESSOR = r'\b[a-zA-Z]+[+][a-zA-Z]+\b'
