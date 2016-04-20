@@ -81,12 +81,3 @@ def p_error(p):
 
 # Build the parser
 parser = yacc.yacc()
-
-while True:
-    try:
-        s = raw_input('EnrollMe > ')
-    except EOFError:
-        break
-    if s == 'quit': break
-    if not s: continue
-    result = parser.parse(s)
