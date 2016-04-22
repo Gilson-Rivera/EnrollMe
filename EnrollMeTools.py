@@ -26,8 +26,11 @@ def enroll(course, section):
         return 'Successfully enrolled in ' + course.upper() + ' ' + section
 
 def drop(course):
-    payload = {'studentID': credentials, 'courseID': course}
-    r = requests.delete('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
+    payload = {'studentID': credentials, 'courseName': course}
+    r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
+    userCourse = r.text
+
+    r = requests.delete('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses/' + userCourse)
     if(r.status_code == 404):
         message = r.json()
         message = message['message']
