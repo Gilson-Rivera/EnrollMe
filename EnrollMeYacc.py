@@ -28,9 +28,6 @@ def p_statement_enroll(p):
 def p_statement_drop(p):
     'statement_drop : DROP COURSE'
     p[0] = p[1] + p[2]
-    print("parsed 'statement_drop'")
-    print("identifier: " + p[1])
-    print("tokens: " + p[2])
     res = EnrollMeTools.drop(p[2])
     print(res)
 
