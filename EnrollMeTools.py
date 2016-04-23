@@ -61,4 +61,14 @@ def change(course, section):
 # Requisites:
 #   Query for all courses in schedule, and
 #   draw a table accordingly.
-# def schedule():
+def schedule():
+    payload = {'studentID': credentials}
+    r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
+    userCourses = r.json()
+    userCourses = userCourses['data']
+
+    courseList = []
+    for course in userCourses:
+        r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/courses/' + course['courseID'])
+        courseList.append(r.json()['data'])
+    print courseList
