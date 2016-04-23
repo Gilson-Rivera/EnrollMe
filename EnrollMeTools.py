@@ -19,8 +19,7 @@ def enroll(course, section):
     payload = {'studentID': credentials,'courseID': course, 'section': section}
     r = requests.post('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
     if(r.status_code == 404):
-        message = r.json()
-        message = message['message']
+        message = r.json()['message']
         return message
     if(r.status_code == 201):
         return 'Successfully enrolled in ' + course.upper() + ' ' + section
@@ -32,8 +31,7 @@ def drop(course):
 
     r = requests.delete('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses/' + userCourse)
     if(r.status_code == 404):
-        message = r.json()
-        message = message['message']
+        message = r.json()['message']
         return message
     if(r.status_code == 204):
         return 'Successfully dropped of ' + course.upper()
@@ -46,8 +44,7 @@ def change(course, section):
     payload = {'section': section}
     r = requests.put('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses/' + userCourse, params=payload)
     if(r.status_code == 404):
-        message = r.json()
-        message = message['message']
+        message = r.json()['message']
         return message
     if(r.status_code == 200):
         return 'Successfully changed to ' + course.upper() + ' ' + section
