@@ -13,7 +13,7 @@ with open('credentials.txt') as f:
             if (l[1]):
                 credentials = l[1]
             else:
-                print 'credentials not set'
+                print('credentials not set')
 
 def enroll(course, section):
     payload = {'studentID': credentials,'courseID': course, 'section': section}
@@ -58,17 +58,13 @@ def change(course, section):
 #   construct request URL accordingly before query.
 # def available(course, professor, time):
 
-# Requisites:
-#   Query for all courses in schedule, and
-#   draw a table accordingly.
 def schedule():
     payload = {'studentID': credentials}
     r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
-    userCourses = r.json()
-    userCourses = userCourses['data']
+    userCourses = r.json()['data']
 
-    courseList = []
+    print('COURSE\t\t' + 'SECTION\t' + 'PERIOD\t' + 'TIME\t\t\t' + 'PROFESSOR')
     for course in userCourses:
         r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/courses/' + course['courseID'])
-        courseList.append(r.json()['data'])
-    print courseList
+        obj = r.json()['data']
+        print(obj['courseID'] + '\t' + obj['section'] + '\t' + obj['period'] + '\t' + obj['startTime'] + '-' + obj['endTime'] + '\t' + obj['professor'])
