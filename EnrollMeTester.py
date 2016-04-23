@@ -45,11 +45,16 @@ class MyTestFunctions(unittest.TestCase):
         self.assertEqual("LexToken(CHANGE,'change',1,0)", str(lexer.token()))
         self.assertEqual("LexToken(COURSE,'ICOM5995',1,7)", str(lexer.token()))
 
+    def test_available_classes(self):
+        lexer.input("available morning")
+
+        self.assertEqual("LexToken(AVAILABLE,'available',1,0)", str(lexer.token()))
+        self.assertEqual("LexToken(TIME,'morning',1,10)", str(lexer.token()))
+
     def test_schedule(self):
-        lexer.input("schedule morning")
+        lexer.input("schedule")
 
         self.assertEqual("LexToken(SCHEDULE,'schedule',1,0)", str(lexer.token()))
-        self.assertEqual("LexToken(TIME,'morning',1,9)", str(lexer.token()))
 
 
     if __name__ == '__main__':
