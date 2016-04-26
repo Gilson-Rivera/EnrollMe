@@ -24,11 +24,11 @@ tokens = [
 # Regular expression rules for simple tokens
 t_COURSE = r'[a-zA-Z]{4}[0-9]{4}'
 t_SECTION = r'[0-9]{3}'
-t_PROFESSOR = r'\b[a-zA-Z]+[+][a-zA-Z]+\b'
+t_PROFESSOR = r'\b[a-zA-Z]+[+]?[a-zA-Z]+\b'
 
 # Define a rule for time because of overlap with ID rule
 def t_TIME(t):
-    r'\bmorning\b|\bafternoon\b'
+    r'\bAM\b|\bPM\b|\bam\b|\bpm\b'
     return t
 
 # Define a rule for reserved words
