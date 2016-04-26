@@ -27,6 +27,9 @@ def enroll(course, section):
 def drop(course):
     payload = {'studentID': credentials, 'courseName': course}
     r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
+    if(r.status_code == 404):
+        message = r.json()['message']
+        return message
     userCourse = r.text
 
     r = requests.delete('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses/' + userCourse)
@@ -39,6 +42,9 @@ def drop(course):
 def change(course, section):
     payload = {'studentID': credentials, 'courseName': course}
     r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
+    if(r.status_code == 404):
+        message = r.json()['message']
+        return message
     userCourse = r.text
 
     payload = {'section': section}
@@ -58,6 +64,9 @@ def change(course, section):
 def schedule():
     payload = {'studentID': credentials}
     r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/usercourses', params=payload)
+    if(r.status_code == 404):
+        print("Schedule is empty.")
+        return
     userCourses = r.json()['data']
 
     print('COURSE\t\t' + 'SECTION\t' + 'PERIOD\t' + 'TIME\t\t\t' + 'PROFESSOR')
