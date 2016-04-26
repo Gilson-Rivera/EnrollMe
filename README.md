@@ -32,7 +32,7 @@ After entering the EnrollMe shell environment, students can **enroll**, **drop**
 enroll [course] [section]
 drop [course]
 change [course] [section]
-available [course] [professor] [time]
+available [course] [professor] [time]     // Note: Professor field requires capitalized first name and last name
 schedule
 ```
 
