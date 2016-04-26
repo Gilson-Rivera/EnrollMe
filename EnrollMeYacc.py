@@ -16,6 +16,7 @@ def p_statement(p):
                  | statement_change
                  | statement_available
                  | statement_schedule'''
+    p[0] = p[1]
     pass
 
 
@@ -41,19 +42,61 @@ def p_statement_change(p):
 #   When invoking available(), make sure to pass down arguments
 #   in the correct order of course, professor, time.
 def p_statement_available(p):
-    '''statement_available : AVAILABLE COURSE PROFESSOR TIME
-                         | AVAILABLE COURSE PROFESSOR
-                         | AVAILABLE COURSE TIME
-                         | AVAILABLE PROFESSOR TIME
-                         | AVAILABLE COURSE
-                         | AVAILABLE PROFESSOR
-                         | AVAILABLE TIME
-                         | AVAILABLE'''
-    print("parsed 'statement_available'")
-    print("identifier: " + p[1])
-    print("tokens: ")
-    for part in p[2:]:
-        print(part)
+    '''statement_available : statement_available_cpt
+                           | statement_available_cp
+                           | statement_available_ct
+                           | statement_available_pt
+                           | statement_available_c
+                           | statement_available_p
+                           | statement_available_t
+                           | AVAILABLE'''
+    p[0] = p[1]
+    if(p[1] == 'available'):
+        res = EnrollMeTools.available(None, None, None)
+        print(res)
+    pass
+
+def p_statement_available_cpt(p):
+    'statement_available_cpt : AVAILABLE COURSE PROFESSOR TIME'
+    p[0] = p[1] + p[2] + p[3] + p[4]
+    res = EnrollMeTools.available(p[2], p[3], p[4])
+    print(res)
+
+def p_statement_available_cp(p):
+    'statement_available_cp : AVAILABLE COURSE PROFESSOR'
+    p[0] = p[1] + p[2] + p[3]
+    res = EnrollMeTools.available(p[2], p[3], None)
+    print(res)
+
+def p_statement_available_ct(p):
+    'statement_available_ct : AVAILABLE COURSE TIME'
+    p[0] = p[1] + p[2] + p[3]
+    res = EnrollMeTools.available(p[2], None, p[3])
+    print(res)
+
+def p_statement_available_pt(p):
+    'statement_available_pt : AVAILABLE PROFESSOR TIME'
+    p[0] = p[1] + p[2] + p[3]
+    res = EnrollMeTools.available(None, p[2], p[3])
+    print(res)
+
+def p_statement_available_c(p):
+    'statement_available_c : AVAILABLE COURSE'
+    p[0] = p[1] + p[2]
+    res = EnrollMeTools.available(p[2], None, None)
+    print(res)
+
+def p_statement_available_p(p):
+    'statement_available_p : AVAILABLE PROFESSOR'
+    p[0] = p[1] + p[2]
+    res = EnrollMeTools.available(None, p[2], None)
+    print(res)
+
+def p_statement_available_t(p):
+    'statement_available_t : AVAILABLE TIME'
+    p[0] = p[1] + p[2]
+    res = EnrollMeTools.available(None, None, p[2])
+    print(res)
 
 # Requisites:
 #   When invoking schedule(), table drawing of schedule

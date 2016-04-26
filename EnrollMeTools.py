@@ -60,6 +60,28 @@ def change(course, section):
 #   check for existence of input variables, and
 #   construct request URL accordingly before query.
 # def available(course, professor, time):
+def available(course, professor, time):
+    pay = []
+    if(course):
+        pay.append("courseID=" + course)
+    if(professor):
+        pay.append("professor=" + professor)
+    if(time):
+        pay.append("time=" + time.upper())
+    payload = "&".join(pay)
+
+
+    r = requests.get('http://162.243.3.45/EnrollMeAPI/api/public/v1/courses?' + payload)
+    if(r.status_code == 404):
+        print('No courses found.')
+        return
+    availableCourses = r.json()['data']
+
+    print('\n')
+    print('COURSE\t\t' + 'SECTION\t' + 'PERIOD\t' + 'TIME\t\t\t' + 'PROFESSOR')
+    for course in availableCourses:
+        print(course['courseID'] + '\t' + course['section'] + '\t' + course['period'] + '\t' + course['startTime'] + '-' + course['endTime'] + '\t' + course['professor'])
+    print('\n')
 
 def schedule():
     payload = {'studentID': credentials}
